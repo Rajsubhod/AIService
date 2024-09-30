@@ -1,0 +1,14 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/api/v1/message
+Content-Type: application/json
+
+{
+    "message": "INR 294.99 spent on ICICI Bank Card XX7003 on 23-Apr-24 at TW Coffee Kora. Avl Lmt: INR 43,266.15. To dispute,call 18002662/SMS BLOCK 7003 to 9215676766",
+    "name": "John Doe"
+}

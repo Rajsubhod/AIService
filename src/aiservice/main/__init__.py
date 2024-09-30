@@ -1,0 +1,1 @@
+from src.aiservice.main.loggin import app_logger
