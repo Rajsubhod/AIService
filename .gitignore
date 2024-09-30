@@ -125,3 +125,5 @@ cython_debug/
 
 # Poetry
 poetry.lock
+
+logs/
