@@ -1,6 +1,9 @@
 from confluent_kafka import Producer
 import socket
 
+from aiservice.main.utils import AILog
+
+
 class ExpenseProducer:
     def __init__(self, config=None, topic=None):
         if config is None:
@@ -15,6 +18,7 @@ class ExpenseProducer:
         self._topic = topic
         self._config = config
         self._producer = Producer(config)
+        self.expenseProducer = AILog(name="ExpenseProducer")
 
     @staticmethod
     def acked(err, msg):
@@ -24,6 +28,7 @@ class ExpenseProducer:
             print("Message produced: %s" % (str(msg)))
 
     def produce(self, message):
+        self.expenseProducer.info(f"Producing message: {message}")
         self._producer.produce(self._topic, message, callback=ExpenseProducer.acked)
         self._producer.flush(1)
 

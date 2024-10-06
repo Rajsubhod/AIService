@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_mistralai import ChatMistralAI
 
+from aiservice.main.utils import AILog
 from src.aiservice.main.entity import Expense
 
 
@@ -25,9 +26,11 @@ class LLMService:
         self.api_key = os.getenv("LLM_KEY")
         self.llm = ChatMistralAI(api_key=self.api_key, model="mistral-large-2402",max_retries=3)
         self.runnable = self.prompt | self.llm.with_structured_output(schema=Expense)
+        self.llmLog = AILog(name="llmService")
 
     def run(self,message :str)-> dict | Expense:
         try:
+            self.llmLog.info("Request to LLM Service")
             return self.runnable.invoke({"text": message})
         except Exception as e:
             raise e

@@ -9,7 +9,7 @@ class AILog(logging.Logger):
 
         if log_file is None:
             current_date = datetime.now().strftime("%Y-%m-%d")
-            log_file = f"~/logs/{name}_{current_date}.log"
+            log_file = f"./logs/{name}_{current_date}.log"
 
         log_dir = os.path.dirname(log_file)
         os.makedirs(log_dir, exist_ok=True)
